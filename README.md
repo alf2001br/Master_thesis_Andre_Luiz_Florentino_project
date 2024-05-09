@@ -21,5 +21,37 @@ The main purpose of this repository is to provide all codes in either Jupyter no
 4. The training and testing of the models were performed on a notebook equipped with an Intel® Core™ i7-10850H CPU @2,70 GHz, 80 GB of RAM, and a Quadro T2000 graphics card with 4 GB of memory. The operational system in use was Windows 10 Enterprise. It may be necessary to adjust some of the codes if one has less computational power, and specially, less memory (RAM) capacity;
 5. The content of the folders below were intentionally ignored in this repository, however, the files were listed in the end of this document.
 
-![[MT_README_picture_1.png]]
+![screenshot](README_picture_1.png)
 
+***
+### List of Jupyter notebooks
+
+* *01_Feature_extraction_exploration.ipynb:* 
+
+Read the datasets and perform several data exploration on features. Outputs the script (class): MT_loadDataset.py
+
+
+* *02_PreProcessing_and_data_exploration.ipynb:* 
+
+Pre-process the audio with augmentations and windowing techniques. Outputs the scripts (classes) for pre-processing and feature extraction: MT_audioPP.py and MT_feature_extractor.py
+
+
+* *03_New_dataset_US8K_AV.ipynb:* 
+
+Creates the new dataset **US8K_AV** based on the source US8K.
+
+
+* *04_ML_modeling.ipynb:* 
+
+Machine learning modeling for the classifiers: Gaussian Naïve Bayes (GNB), Support Vector Machine (SVM), Logistic Regression (LR), K-Nearest Neighbors (k-NN), Random Forest (RF) and voting soft / hard.
+
+
+***
+
+### List of scripts .PY 
+
+In order of utilization in the Jupyter notebooks:
+
+* MT_loadDataset.py
+* MT_audioPP.py
+* MT_feature_extractor.py
