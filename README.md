@@ -21,5 +21,5 @@ The main purpose of this repository is to provide all codes in either Jupyter no
 4. The training and testing of the models were performed on a notebook equipped with an Intel® Core™ i7-10850H CPU @2,70 GHz, 80 GB of RAM, and a Quadro T2000 graphics card with 4 GB of memory. The operational system in use was Windows 10 Enterprise. It may be necessary to adjust some of the codes if one has less computational power, and specially, less memory (RAM) capacity;
 5. The content of the folders below were intentionally ignored in this repository, however, the files were listed in the end of this document.
 
-![screenshot](MT_README_picture_1.png)
+![screenshot](README_picture_1.png)
 
