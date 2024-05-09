@@ -48,9 +48,13 @@ class loadDataset:
         self.db_B        = pd.DataFrame()
         self.csv_file    = os.path.basename(os.path.normpath(self.path)) + ".csv"
 
-        self._readDoc()
-        self._OHEV()
-        self._exportCSV()
+        if os.path.basename(os.path.normpath(self.path)) == "US8K_AV":
+            self.db_B = pd.read_csv(os.path.join(self.path, self.csv_file))
+            self.db_B = self.db_B.drop('Unnamed: 0', axis=1)
+        else:
+            self._readDoc()
+            self._OHEV()
+            self._exportCSV()
 
     # Procedure to read the folders, sound files and create the dataframe
     def _readDoc(self):
