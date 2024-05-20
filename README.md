@@ -98,7 +98,10 @@ In order of utilization in the Jupyter notebooks:
 ![screenshot](_analysis/07_Compile_results_ESC-10_02.png)
 
 **BDLi2**
-![screenshot](_analysis/07_Compile_results_BDLib2_01.png)
+![screenshot](_analysis/07_Compile_results_BDLib2_03.png)
 
-![screenshot](_analysis/07_Compile_results_BDLib2_02.png)
+![screenshot](_analysis/07_Compile_results_BDLib2_04.png)
 
+All picture in one....
+
+![[README_picture_2.png]]
