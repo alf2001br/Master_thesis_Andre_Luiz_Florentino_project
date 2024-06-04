@@ -54,7 +54,6 @@ class feature_extractor:
         row['CENTROIDS'] = np.mean(librosa.feature.spectral_centroid(y  = row.Audio, hop_length = self.hop_length, n_fft = self.n_fft, sr = self.SR))
         row['BANDWIDTH'] = np.mean(librosa.feature.spectral_bandwidth(y = row.Audio, hop_length = self.hop_length, n_fft = self.n_fft, sr = self.SR))
         row['ROLLOFF']   = np.mean(librosa.feature.spectral_rolloff(y   = row.Audio, hop_length = self.hop_length, n_fft = self.n_fft, sr = self.SR))
-        # row['BPM'], _    = librosa.beat.beat_track(y                    = row.Audio, hop_length = self.hop_length, sr = self.SR)
 
         # 128 x frames matrix
         mel              = librosa.feature.melspectrogram(y = row.Audio, hop_length = self.hop_length, n_fft = self.n_fft, sr = self.SR, n_mels = self.n_mels)
