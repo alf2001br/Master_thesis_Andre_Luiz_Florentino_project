@@ -51,7 +51,7 @@ Machine learning modeling for the classifiers: Gaussian Naïve Bayes (GNB), Supp
 
 * *05_Machine_learning_cross_validation.ipynb*
 
-Use the notebook to run a cross-validation of the machine learning classifiers, given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics. One can run the notebook with different models to compare results afterwards. In this dissertation, 12 combinations were utilized:
+This notebook is used to run a cross-validation of the machine learning classifiers, given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics. You can run the notebook with different models to compare results afterwards. In this dissertation, 12 combinations were utilized.
 
 * norm_PCA_augmented
 * norm_PCA_original
@@ -66,18 +66,38 @@ Use the notebook to run a cross-validation of the machine learning classifiers, 
 * std_original
 * std_windowed
 
-The combination "augmented_windowed" is implied for the datasets ESC-10 and BDLib2, but for US8K and US8K_AV, only the windowing technique was considered to save time during the training phase. For simplification purposes, all these models were referred to as "windowed" in the notebook.
+The combination "augmented_windowed" is implied for the datasets ESC-10 and BDLib2, but for US8K and US8K_AV, only the windowing technique was considered to save time during the training phase. For simplification purposes, all these models are referred to as "windowed" in the notebook.
 
 
 * *06_Neural_network.ipynb*
 
-Neural networks ([[ANN]] and [[CNN]] 1D) modeling and cross-validation of the classifiers, given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics. One can run the notebook with different models to compare results afterwards in the same way as the previous notebook (05_Machine_learning_cross_validation.ipynb).
+This notebook covers Neural networks (ANN and CNN 1D) modeling and cross-validation of the classifiers, given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics. You can run the notebook with different models to compare results afterwards in the same way as the previous notebook (05_Machine_learning_cross_validation.ipynb).
 
 
 * *07_Compile_results.ipynb*
 
-Notebook to compile all the results from the .CSV into bar plot with the standard deviation for each classifier (8x) and box plot with the medians, quartiles, whiskers and outliers for each classifier model (12x).
+Use this notebook to compile all the results from the .CSV files into a bar plot with the standard deviation for each classifier (8x), and a box plot with the medians, quartiles, whiskers and outliers for each classifier model (12x). 
+The results of the CNN 2D are also included but separated from the other plots given the model unique specification (original, augmented and windowed, all of them without normalization or PCA techniques).
 
+
+* *08_Feature_extraction_for_CNN_2D_aggregated.ipynb*
+
+Pre-process the audio with augmentations and windowing techniques to extract the Log-Mel spectrograms and its first and second derivatives (delta and delta delta). These features and then aggregated (stacked up) to create an "image" of 180 mel frequencies (60 + 60 + 60) x 44 frames for the windowed model. For the original or augmented model, the number of frames is related to the normalized audio duration:
+* ESC-10 (5 s) = 180 x 216
+* BDLib2 (10s) = 180 x 431
+* US8K (4s) = 180 x 173
+* US8K_AV (4s) = 180 x 173
+
+
+* *09_CNN_2D.ipynb*
+
+This notebook covers the Convolutional Neural Network 2D (CNN 2D) modeling and cross-validation of two reference architectures: Su et al. (2019) [[@Su2020]] and Luz et al. (2021) [[Luz2021]] , given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics.
+It´s important to mention that both architectures were utilized as baseline but several features were changed such as regularization techniques, strides, fully connected layers, optimizers, etc... 
+
+
+* *10_ESR_data_preparation.ipynb*
+
+Xxxxx
 ***
 
 ### List of scripts .PY 
@@ -101,6 +121,16 @@ In order of utilization in the Jupyter notebooks:
 ![screenshot](_analysis/07_Compile_results_BDLib2_03.png)
 
 ![screenshot](_analysis/07_Compile_results_BDLib2_04.png)
+
+**US8K**
+![screenshot](_analysis/07_Compile_results_US8K_05.png)
+
+![screenshot](_analysis/07_Compile_results_US8K_06.png)
+
+**US8K_AV**
+![screenshot](_analysis/07_Compile_results_US8K_AV_07.png)
+
+![screenshot](_analysis/07_Compile_results_US8K_AV_08.png)
 
 All picture in one....
 
