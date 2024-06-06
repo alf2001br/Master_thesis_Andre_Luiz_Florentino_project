@@ -91,7 +91,7 @@ Pre-process the audio with augmentations and windowing techniques to extract the
 
 * *09_CNN_2D.ipynb*
 
-This notebook covers the Convolutional Neural Network 2D (CNN 2D) modeling and cross-validation of two reference architectures: Su et al. (2019) [[@Su2020]] and Luz et al. (2021) [[Luz2021]] , given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics.
+This notebook covers the Convolutional Neural Network 2D (CNN 2D) modeling and cross-validation of two reference architectures: Su et al. (2019) [@Su2020](https://www.mdpi.com/1424-8220/19/7/1733) and Luz et al. (2021) [@Luz2021](https://www.sciencedirect.com/science/article/abs/pii/S0003682X20309245) , given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics.
 It´s important to mention that both architectures were utilized as baseline but several features were changed such as regularization techniques, strides, fully connected layers, optimizers, etc... 
 
 
