@@ -134,4 +134,5 @@ In order of utilization in the Jupyter notebooks:
 
 All picture in one....
 
+![screenshot](_pictures/README_picture_2.png)
 ![[README_picture_2.png]]
