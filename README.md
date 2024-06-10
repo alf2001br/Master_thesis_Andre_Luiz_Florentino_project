@@ -22,7 +22,7 @@ The main purpose of this repository is to provide all codes in either Jupyter no
 5. A minimum of 100 GB of hard disk is necessary to save all datasets, models, pictures, etc;
 6. Many thanks to Valerio Velardo. Most of the charts were based on his playlist available in:
 	https://www.youtube.com/@ValerioVelardoTheSoundofAI
-7. The content of the folders below were intentionally ignored in this repository, however, the files were listed in the end of this document.
+7. The content of the folders below were intentionally ignored in this repository, except for the folders */_analysys* and */_pictures*.
 
 ![screenshot](_pictures/README_picture_1.png)
 ![[README_picture_1.png]]
@@ -32,22 +32,22 @@ The main purpose of this repository is to provide all codes in either Jupyter no
 * *01_Feature_extraction_exploration.ipynb:* 
 
 Read the datasets and perform several data exploration on features. Outputs the script (class): MT_loadDataset.py
-
+***
 
 * *02_PreProcessing_and_data_exploration.ipynb:* 
 
 Pre-process the audio with augmentations and windowing techniques. Outputs the scripts (classes) for pre-processing and feature extraction: MT_audioPP.py and MT_feature_extractor.py
-
+****
 
 * *03_New_dataset_US8K_AV.ipynb:* 
 
 Creates the new dataset **US8K_AV** based on the source US8K.
-
+***
 
 * *04_ML_modeling.ipynb:* 
 
 Machine learning modeling for the classifiers: Gaussian Naïve Bayes (GNB), Support Vector Machine (SVM), Logistic Regression (LR), K-Nearest Neighbors (k-NN), Random Forest (RF) and voting soft / hard.
-
+***
 
 * *05_Machine_learning_cross_validation.ipynb*
 
@@ -66,19 +66,21 @@ This notebook is used to run a cross-validation of the machine learning classifi
 * std_original
 * std_windowed
 
-The combination "augmented_windowed" is implied for the datasets ESC-10 and BDLib2, but for US8K and US8K_AV, only the windowing technique was considered to save time during the training phase. For simplification purposes, all these models are referred to as "windowed" in the notebook.
+Additionally, one can also set the mutual information option in this script, but it will only work for the models original, augmented and windowed. In any of them, only the normalization technique will work, since mutual information does not accept negative values.
 
+The combination "augmented_windowed" is implied for the datasets ESC-10 and BDLib2, but for US8K and US8K_AV, only the windowing technique was considered to save time during the training phase. For simplification purposes, all these models are referred to as "windowed" in the notebook.
+***
 
 * *06_Neural_network.ipynb*
 
 This notebook covers Neural networks (ANN and CNN 1D) modeling and cross-validation of the classifiers, given the k-fold specification of each dataset. The outcome is a .CSV file with the classification metrics. You can run the notebook with different models to compare results afterwards in the same way as the previous notebook (05_Machine_learning_cross_validation.ipynb).
-
+***
 
 * *07_Compile_results.ipynb*
 
 Use this notebook to compile all the results from the .CSV files into a bar plot with the standard deviation for each classifier (8x), and a box plot with the medians, quartiles, whiskers and outliers for each classifier model (12x). 
 The results of the CNN 2D are also included but separated from the other plots given the model unique specification (original, augmented and windowed, all of them without normalization or PCA techniques).
-
+***
 
 * *08_Feature_extraction_for_CNN_2D_aggregated.ipynb*
 
@@ -87,7 +89,7 @@ Pre-process the audio with augmentations and windowing techniques to extract the
 * BDLib2 (10s) = 180 x 431
 * US8K (4s) = 180 x 173
 * US8K_AV (4s) = 180 x 173
-
+***
 
 * *09_CNN_2D.ipynb*
 
@@ -97,7 +99,9 @@ It´s important to mention that both architectures were utilized as baseline but
 
 * *10_ESR_data_preparation.ipynb*
 
-Xxxxx
+The purpose of this notebook is to review the results of the classifiers SVC, LR and RF (machine learning and ensemble method) and the models ANN, CNN 1D and CNN2 for the dataset US8K_AV, retrieving saved models from previous notebooks. 
+For all of the them, the validation set was defined as the fold '1'. The trained models utilized were created from the scripts *04_ML_modeling.ipynb* and *06_Neural_network.ipynb*.
+At the end, the original audios from the validation set are windowed and evaluated using the trained classifiers/models. The results are printed in the screen window by window as well as the result of the most likely class for the audio clip (7 windows). All the results are saved as .CSV or .PKL files to be compared afterwards with the results from the Raspberry Pi.
 ***
 
 ### List of scripts .PY 
@@ -107,6 +111,7 @@ In order of utilization in the Jupyter notebooks:
 * MT_loadDataset.py
 * MT_audioPP.py
 * MT_feature_extractor.py
+* MT_audioPPFE_ML.py
 
 ***
 
