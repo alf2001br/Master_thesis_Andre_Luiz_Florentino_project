@@ -101,7 +101,13 @@ It´s important to mention that both architectures were utilized as baseline but
 
 The purpose of this notebook is to review the results of the classifiers SVC, LR and RF (machine learning and ensemble method) and the models ANN, CNN 1D and CNN2 for the dataset US8K_AV, retrieving saved models from previous notebooks. 
 For all of the them, the validation set was defined as the fold '1'. The trained models utilized were created from the scripts *04_ML_modeling.ipynb* and *06_Neural_network.ipynb*.
-At the end, the original audios from the validation set are windowed and evaluated using the trained classifiers/models. The results are printed in the screen window by window as well as the result of the most likely class for the audio clip (7 windows). All the results are saved as .CSV or .PKL files to be compared afterwards with the results from the Raspberry Pi.
+At the end, the original audios from the validation set are windowed and evaluated using the trained classifiers/models. The results are printed in the screen window by window, including the the result of the most likely class for the audio clip (7 windows) and the average total prediction time. All the results are saved as .CSV and .PKL files to be compared afterwards with the results from the Raspberry Pi.
+***
+
+* *11_ESR_evaluation.ipynb*
+
+Use this notebook to run *n* batches of evaluation on the original audio in order to compile the total prediction time of each classifier/model. The output is saved as .CSV and .PKL files to be compared afterwards with the results from the Raspberry Pi.
+The images shown in this notebook were created in the Excel using the .CSV file *_totalPredTime.csv*.
 ***
 
 ### List of scripts .PY 
@@ -112,10 +118,13 @@ In order of utilization in the Jupyter notebooks:
 * MT_audioPP.py
 * MT_feature_extractor.py
 * MT_audioPPFE_ML.py
+* MT_ESR_evaluation.py
+* MT_ESR_for_memory_profile.py
 
 ***
 
 ### Compilation of the results
+#### Accuracy
 
 **ESC-10**
 ![screenshot](_analysis/07_Compile_results_ESC-10_01.png)
@@ -141,3 +150,10 @@ All picture in one....
 
 ![screenshot](_pictures/README_picture_2.png)
 ![[README_picture_2.png]]
+
+***
+#### Total prediction time
+
+
+![screenshot](_pictures/README_picture_3.jpg)
+![[README_picture_3.jpg]]
