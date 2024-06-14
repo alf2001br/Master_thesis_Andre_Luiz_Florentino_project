@@ -106,8 +106,16 @@ At the end, the original audios from the validation set are windowed and evaluat
 
 * *11_ESR_evaluation.ipynb*
 
-Use this notebook to run *n* batches of evaluation on the original audio in order to compile the total prediction time of each classifier/model. The output is saved as .CSV and .PKL files to be compared afterwards with the results from the Raspberry Pi.
-The images shown in this notebook were created in the Excel using the .CSV file *_totalPredTime.csv*.
+Use this notebook to run *n* batches of evaluation on the original audio in order to compile the total prediction time and memory profile of each classifier/model. The output is saved as .CSV and .PKL files to be compared afterwards with the results from the Raspberry Pi.
+The images shown in this notebook were created in the Excel using the .CSV file *_totalPredTime.csv* and *_totalPredMem_jupyter.csv*.
+***
+
+ * RUN the Python file *MT_ESR_for_memory_profile.py* in a IDE:
+
+To evaluate the memory allocation to load all libraries and run the predictions. I was a bit lazy here and didn't optimize the code, so one has to run the script _n_ times (suggested) 10x and specifying the the target classifier and target interval.
+
+The results have to be compiled manually in Excel in order to produce one of the chart _memory_usage_ shown below.
+
 ***
 
 ### List of scripts .PY 
@@ -119,7 +127,7 @@ In order of utilization in the Jupyter notebooks:
 * MT_feature_extractor.py
 * MT_audioPPFE_ML.py
 * MT_ESR_evaluation.py
-* MT_ESR_for_memory_profile.py
+* MT_ESR_for_memory_profile.py (the only one that outputs meaningful results standalone)
 
 ***
 
@@ -152,8 +160,19 @@ All picture in one....
 ![[README_picture_2.png]]
 
 ***
-#### Total prediction time
+#### Total prediction time and memory profile
 
 
 ![screenshot](_pictures/README_picture_3.jpg)
+
 ![[README_picture_3.jpg]]
+
+
+![screenshot](_pictures/README_picture_4.jpg)
+
+![[README_picture_4.jpg]]
+
+
+![screenshot](_pictures/README_picture_5.jpg)
+
+![[README_picture_5.jpg]]
