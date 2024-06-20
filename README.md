@@ -118,6 +118,17 @@ The results have to be compiled manually in Excel in order to produce one of the
 
 ***
 
+* *12_ESR_NN_conversion_quantization.ipynb*
+
+Use this notebook to convert the neural network saved models into TFLite format to be deployed (embedded) in the Raspberry Pi. The conversion (quantization) was set as default and the differences in the accuracy results were negligible (ANN slightly worse whereas CNN1D and CNN2D better).
+
+***
+
+* *13_ESR_evaluation_tflite.ipynb*
+
+This notebook runs almost the same cells as the notebook *11_ESR_evaluation.ipynb*, the difference lies in the NN models that were converted to TFLite format. Again, some files are saved for further processing in Excel (*_totalPredTime_tflite.csv* and *_totalPredMem_jupyter_tflite.csv*) or just as documentation for comparison. 
+
+***
 ### List of scripts .PY 
 
 In order of utilization in the Jupyter notebooks:
@@ -127,6 +138,7 @@ In order of utilization in the Jupyter notebooks:
 * MT_feature_extractor.py
 * MT_audioPPFE_ML.py
 * MT_ESR_evaluation.py
+* MT_ESR_evaluation_tflite.py
 * MT_ESR_for_memory_profile.py (the only one that outputs meaningful results standalone)
 
 ***
