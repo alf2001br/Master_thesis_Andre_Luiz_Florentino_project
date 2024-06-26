@@ -44,6 +44,11 @@ Pre-process the audio with augmentations and windowing techniques. Outputs the s
 Creates the new dataset **US8K_AV** based on the source US8K.
 ***
 
+* *03_New_dataset_US8K_AV_silence_audio.ipynb:* 
+
+Creates the class SILENCE from audio files downloaded from the [Freesound.org](https://freesound.org/) project and merge it in the new dataset US8K_AV.
+***
+
 * *04_ML_modeling.ipynb:* 
 
 Machine learning modeling for the classifiers: Gaussian Naïve Bayes (GNB), Support Vector Machine (SVM), Logistic Regression (LR), K-Nearest Neighbors (k-NN), Random Forest (RF) and voting soft / hard.
@@ -115,21 +120,31 @@ The images shown in this notebook were created in the Excel using the .CSV file 
 To evaluate the memory allocation to load all libraries and run the predictions. I was a bit lazy here and didn't optimize the code, so one has to run the script _n_ times (suggested) 10x and specifying the the target classifier and target interval.
 
 The results have to be compiled manually in Excel in order to produce one of the chart _memory_usage_ shown below.
-
 ***
 
 * *12_ESR_NN_conversion_quantization.ipynb*
 
 Use this notebook to convert the neural network saved models into TFLite format to be deployed (embedded) in the Raspberry Pi. The conversion (quantization) was set as default and the differences in the accuracy results were negligible (ANN slightly worse whereas CNN1D and CNN2D better).
-
 ***
 
 * *13_ESR_evaluation_tflite.ipynb*
 
 This notebook runs almost the same cells as the notebook *11_ESR_evaluation.ipynb*, the difference lies in the NN models that were converted to TFLite format. Again, some files are saved for further processing in Excel (*_totalPredTime_tflite.csv* and *_totalPredMem_jupyter_tflite.csv*) or just as documentation for comparison. 
-
 ***
-### List of scripts .PY 
+
+* *14_Recording_real_time_audio.ipynb*
+
+Tests and trials to record live audio from a microphone.
+***
+
+ * *15_ESR.ipynb*
+
+This notebook performs the live prediction, capturing the sound from the microphone and passing it to a thread to run the algorithm that will frame the audio, extract its features, and finally run the prediction based on ONE specific classifier / model, in this case, it's set up as the CNN 2D.
+
+For the evaluation flow in the Raspberry Pi, an .PY script was created to optimize the performance.
+***
+
+ ### List of scripts .PY 
 
 In order of utilization in the Jupyter notebooks:
 
@@ -140,6 +155,9 @@ In order of utilization in the Jupyter notebooks:
 * MT_ESR_evaluation.py
 * MT_ESR_evaluation_tflite.py
 * MT_ESR_for_memory_profile.py (the only one that outputs meaningful results standalone)
+
+This is the final file that runs live predictions from a microphone. It's based on the jupyter notebook *15_ESR.ipynb*.
+* MT_ESR.py 
 
 ***
 
@@ -171,13 +189,15 @@ All picture in one....
 ![screenshot](_pictures/README_picture_2.png)
 ![[README_picture_2.png]]
 
+Comparison in Excel for the CNN 2D (Larger pictures available in the notebook *09_CNN_2D.ipynb*)
+
+![screenshot](_pictures/README_picture_3.png)
+![[README_picture_3.png]]
+
+
+
 ***
 #### Total prediction time and memory profile
-
-
-![screenshot](_pictures/README_picture_3.jpg)
-
-![[README_picture_3.jpg]]
 
 
 ![screenshot](_pictures/README_picture_4.jpg)
@@ -188,3 +208,8 @@ All picture in one....
 ![screenshot](_pictures/README_picture_5.jpg)
 
 ![[README_picture_5.jpg]]
+
+
+![screenshot](_pictures/README_picture_6.jpg)
+
+![[README_picture_6.jpg]]
