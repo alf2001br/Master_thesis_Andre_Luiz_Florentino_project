@@ -197,7 +197,7 @@ Comparison in Excel for the CNN 2D (Larger pictures available in the notebook *0
 
 
 ***
-#### Total prediction time and memory profile
+#### Total prediction time and memory profile - Notebook
 
 
 ![screenshot](_pictures/README_picture_4.jpg)
@@ -213,3 +213,18 @@ Comparison in Excel for the CNN 2D (Larger pictures available in the notebook *0
 ![screenshot](_pictures/README_picture_6.jpg)
 
 ![[README_picture_6.jpg]]
+
+#### Total prediction time and memory profile - Raspberry Pi
+
+![screenshot](_pictures/README_picture_7.jpg)
+
+![[README_picture_7.jpg]]
+
+![screenshot](_pictures/README_picture_8.jpg)
+
+![[README_picture_8.jpg]]
+
+![screenshot](_pictures/README_picture_9.jpg)
+
+![[README_picture_9.jpg]]
+

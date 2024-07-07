@@ -92,4 +92,3 @@ if __name__ == '__main__':
 
     # mem_usage = memory_usage((func, (), {'classifier': 'CNN2D', 'interval': (0,1)}), max_usage=True)
     # print(mem_usage)
-

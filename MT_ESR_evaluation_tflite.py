@@ -88,32 +88,36 @@ class ESR_evaluation_tflite:
                 self.model_SVC = pickle.load(file)
 
         # Load the classifier LOGISTIC REGRESSION (LR) with the highest accuracy
-        if self.classifier == 'LR':
+        elif self.classifier == 'LR':
             with open(os.path.join(self.path_models, 'Model_LogisticR_norm_windowed.pkl'), 'rb') as file:
                 self.model_LR = pickle.load(file)
 
                 # Load the classifier RANDOM FOREST (RF) with the highest accuracy
-        if self.classifier == 'RF':
+        elif self.classifier == 'RF':
             with open(os.path.join(self.path_models, 'Model_Forest_norm_windowed.pkl'), 'rb') as file:
                 self.model_RF = pickle.load(file)
 
         # Load the ARTIFICIAL NEURAL NETWORK (ANN) or MULT LAYER PERCEPTRON (MLP) model with the highest accuracy
-        if self.classifier == 'ANN':
+        elif self.classifier == 'ANN':
             self.interpreter_ANN    = tflite.Interpreter(os.path.join(self.path_models, 'Model_ANN_weights_0_best_norm_windowed.tflite'))
             self.input_details_ANN  = self.interpreter_ANN.get_input_details()
             self.output_details_ANN = self.interpreter_ANN.get_output_details()
 
             # Load the CONVOLUTIONAL NEURAL NETWORK 1D (CNN1D) model with the highest accuracy
-        if self.classifier == 'CNN1D':
+        elif self.classifier == 'CNN1D':
             self.interpreter_CNN1D    = tflite.Interpreter(os.path.join(self.path_models, 'Model_CNN_1D_weights_0_best_norm_windowed.tflite'))
             self.input_details_CNN1D  = self.interpreter_CNN1D.get_input_details()
             self.output_details_CNN1D = self.interpreter_CNN1D.get_output_details()
 
         # Load the CONVOLUTIONAL NEURAL NETWORK 2D (CNN2D) model with the highest accuracy
-        if self.classifier == 'CNN2D':
+        elif self.classifier == 'CNN2D':
             self.interpreter_CNN2D    = tflite.Interpreter(os.path.join(self.path_models, 'Model_CNN_2D_weights_0_best_windowed.tflite'))
             self.input_details_CNN2D  = self.interpreter_CNN2D.get_input_details()
             self.output_details_CNN2D = self.interpreter_CNN2D.get_output_details()
+
+        else:
+            print("Invalid classifer. System will exit.")
+            sys.exit()
 
         self._windowingPredict()
 

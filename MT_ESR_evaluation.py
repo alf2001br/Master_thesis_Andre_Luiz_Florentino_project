@@ -89,26 +89,30 @@ class ESR_evaluation:
                 self.model_SVC = pickle.load(file)
 
         # Load the classifier LOGISTIC REGRESSION (LR) with the highest accuracy
-        if self.classifier == 'LR':
+        elif self.classifier == 'LR':
             with open(os.path.join(self.path_models, 'Model_LogisticR_norm_windowed.pkl'), 'rb') as file:
                 self.model_LR = pickle.load(file)
 
         # Load the classifier RANDOM FOREST (RF) with the highest accuracy
-        if self.classifier == 'RF':
+        elif self.classifier == 'RF':
             with open(os.path.join(self.path_models, 'Model_Forest_norm_windowed.pkl'), 'rb') as file:
                 self.model_RF = pickle.load(file)
 
         # Load the ARTIFICIAL NEURAL NETWORK (ANN) or MULT LAYER PERCEPTRON (MLP) model with the highest accuracy
-        if self.classifier == 'ANN':
+        elif self.classifier == 'ANN':
             self.model_ANN = load_model(os.path.join(self.path_models, 'Model_ANN_weights_0_best_norm_windowed.hdf5'))
 
         # Load the CONVOLUTIONAL NEURAL NETWORK 1D (CNN1D) model with the highest accuracy
-        if self.classifier == 'CNN1D':
+        elif self.classifier == 'CNN1D':
             self.model_CNN_1D = load_model(os.path.join(self.path_models, 'Model_CNN_1D_weights_0_best_norm_windowed.hdf5'))
 
         # Load the CONVOLUTIONAL NEURAL NETWORK 2D (CNN2D) model with the highest accuracy
-        if self.classifier == 'CNN2D':
+        elif self.classifier == 'CNN2D':
             self.model_CNN_2D = load_model(os.path.join(self.path_models, 'Model_CNN_2D_weights_0_best_windowed.hdf5'))
+
+        else:
+            print("Invalid classifer. System will exit.")
+            sys.exit()
 
         self._windowingPredict()
 
