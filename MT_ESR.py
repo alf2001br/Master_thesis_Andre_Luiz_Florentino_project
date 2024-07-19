@@ -31,11 +31,21 @@ from threading       import Thread
 
 # Globals
 current_path   = os.getcwd()
-CHUNK          = 1024
+
+os_name = os.name
+
+if os_name == 'posix':
+    CHUNK = 4096
+else:
+    CHUNK = 1024
+
+print(f'\nChunk size {CHUNK}\n')
+
 FORMAT         = pyaudio.paInt16
 CHANNELS       = 1
-RATE           = 22050
-RECORD_SECONDS = 1.5
+RATE           = 44100 # Higher sampling rate for recording live audio
+RATE_ESR       = 22050 # Lower sampling rate to match the predicting models
+RECORD_SECONDS = 1
 SAMPLE_SIZE    = 2
 frames         = []
 
@@ -134,7 +144,7 @@ def ESR():
             wf.writeframes(b''.join(frames))
             wf.close()
 
-            rawdata, _ = librosa.load(os.path.join(cache_audio, 'output.wav'), sr=RATE, mono=True)
+            rawdata, _ = librosa.load(os.path.join(cache_audio, 'output.wav'), sr=RATE_ESR, mono=True)
 
             print("================================================")
             print(f'Sound duration..: {librosa.get_duration(y=rawdata):2f}\n')
