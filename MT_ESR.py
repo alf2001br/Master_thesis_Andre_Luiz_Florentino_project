@@ -21,8 +21,11 @@ import pyaudio
 import os
 import librosa
 import wave
+import csv
+import re
 
-import tkinter     as tk
+import numpy   as np
+import tkinter as tk
 
 from IPython.display import display
 from queue           import Queue
@@ -46,8 +49,18 @@ CHANNELS       = 1
 RATE           = 44100 # Higher sampling rate for recording live audio
 RATE_ESR       = 22050 # Lower sampling rate to match the predicting models
 RECORD_SECONDS = 1
-SAMPLE_SIZE    = 2
 frames         = []
+
+predictions_array   = []
+totalPredTime_array = []
+
+# Retrieve the cateforical classes
+path_arrays = os.path.join(current_path, "_ESR", "Arrays")
+nom_classes = []
+with open(os.path.join(path_arrays, 'nom_classes.csv'), 'r') as file:
+    for line in file:
+        nom_classes.append(line.strip())
+
 
 # Find audio device index
 devices = []
@@ -78,6 +91,14 @@ if not os.path.exists(cache_audio):
     os.makedirs(cache_audio)
 
 "==================================== HELPER FUNCTIONS ======================================="
+
+# Function to check the counter of the files _live_audio_predictions.csv and _live_audio_totalPredTime.csv
+def get_next_counter(path, prefix):
+    files = os.listdir(path)
+    pattern = re.compile(rf"{prefix}_(\d+)\.csv")
+    counters = [int(pattern.search(f).group(1)) for f in files if pattern.search(f)]
+    return max(counters) + 1 if counters else 0
+
 
 # Function to record the audio from a specific microphone
 def record_microphone(chunk=CHUNK):
@@ -114,6 +135,7 @@ def start_recording():
 
     display("Starting...")
 
+    # Here starts the live audio recording
     record = Thread(target=record_microphone)
     record.start()
 
@@ -129,12 +151,35 @@ def stop_recording():
         messages.get()
         display("Stopped.")
 
+    # Access and print global arrays after stopping recording
+    global predictions_array, totalPredTime_array
+    print("\nPredictions Array:", predictions_array)
+    print("Total Prediction Time Array:", totalPredTime_array)
+
+    # Determine the next file counter
+    pred_counter = get_next_counter(path_arrays, '_live_audio_predictions')
+    time_counter = get_next_counter(path_arrays, '_live_audio_totalPredTime')
+
+    # Ensure both counters are in sync
+    counter = max(pred_counter, time_counter)
+
+    # Write the result to a file (array format)
+    np.array(predictions_array).tofile(os.path.join(path_arrays, f'_live_audio_predictions_{counter}.csv'), sep=',')
+    np.array(totalPredTime_array).tofile(os.path.join(path_arrays, f'_live_audio_totalPredTime_{counter}.csv'), sep=',')
+
+    # Write the result to a file (line by line format)
+    # np.savetxt(os.path.join(path_arrays, '_live_audio_predictions.csv'), np.array(predictions_array), delimiter=';', fmt='%s')
+    # np.savetxt(os.path.join(path_arrays, '_live_audio_totalPredTime.csv'), np.array(totalPredTime_array), delimiter=';')
+
 
 # Start the ESR (live prediction)
 def ESR():
+    global predictions_array, totalPredTime_array
     try:
         while not messages.empty():
-            frames = recordings.get()
+
+            classifier = 'CNN2D'
+            frames     = recordings.get()
 
             # Save the audio file as .WAV for loading into Librosa
             wf = wave.open(os.path.join(cache_audio, "output.wav"), "wb")
@@ -148,7 +193,15 @@ def ESR():
 
             print("================================================")
             print(f'Sound duration..: {librosa.get_duration(y=rawdata):2f}\n')
-            ESR_evaluation_tflite([rawdata], 'CNN2D', path_modelsVal, path_arrays)
+            ESR_EVAL      = ESR_evaluation_tflite([rawdata], classifier, path_modelsVal, path_arrays)
+
+            # Return the predictions and total time for the predictions
+            predictions   = np.array(ESR_EVAL.predictions)
+            totalPredTime = np.array(ESR_EVAL.totalPredTime)
+
+            # Append the results
+            predictions_array.append(nom_classes[predictions[0]])
+            totalPredTime_array.append(totalPredTime.tolist()[0])
 
     except Exception as e:
         print(f"Error during ESR: {e}")
