@@ -32,6 +32,7 @@ The main purpose of this repository is to provide all codes in either Jupyter no
 * *01_Feature_extraction_exploration.ipynb:* 
 
 Read the datasets and perform several data exploration on features. Outputs the script (class): MT_loadDataset.py
+This notebook has a lot of images related to the audio attributes and therefore it´s too big for visualization in the GitHub. Nevertheless, one can download it and run it without any further constraints.
 ***
 
 * *02_PreProcessing_and_data_exploration.ipynb:* 
