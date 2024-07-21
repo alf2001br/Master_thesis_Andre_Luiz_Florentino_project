@@ -96,7 +96,7 @@ class loadDataset:
 
             # Setup for US8K
             if os.path.basename(os.path.normpath(self.path)) == "US8K":
-                metadata = next(os.walk(self.path))[2][0]
+                metadata = 'UrbanSound8K.csv'
 
                 dtype_dict = {'slice_file_name': 'str',
                               'fsID': 'int64',
