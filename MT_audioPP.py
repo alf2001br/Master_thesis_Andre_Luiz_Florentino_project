@@ -54,10 +54,12 @@ class audioPP:
 
         # Calculate the number of samples needed to fit the target time length (in seconds)
         self.SR               = 22050
+        self.frame_size       = 1024
+        self.overlapping      = 0.5 # 50% overlapping
         self.time_length      = time_length
         self.target_samples   = int(self.time_length * self.SR)
         self.frames           = frames
-        self.window_size      = 512 * (self.frames - 1)
+        self.window_size      = (self.frame_size * self.overlapping) * (self.frames - 1)
         self.audio_augmented  = []
         self.labels_cat_wind  = []
         self.labels_cod_wind  = []
