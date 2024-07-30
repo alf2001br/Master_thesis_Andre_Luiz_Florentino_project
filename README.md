@@ -43,11 +43,11 @@ Pre-process the audio with augmentations and windowing techniques. Outputs the s
 * *03_New_dataset_US8K_AV.ipynb:* 
 
 Creates the new dataset **US8K_AV** based on the source US8K.
-***
-
-* *03_New_dataset_US8K_AV_silence_audio.ipynb:* 
-
 Creates the class SILENCE from audio files downloaded from the [Freesound.org](https://freesound.org/) project and merge it in the new dataset US8K_AV.
+
+This jupyter notebook is the base to create the official dataset uploaded at Harvard Dataverse.
+
+Add the link to Harvard Dataverse here.
 ***
 
 * *04_ML_modeling.ipynb:* 
