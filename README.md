@@ -22,7 +22,7 @@ The main purpose of this repository is to provide all codes in either Jupyter no
 5. A minimum of 100 GB of hard disk is necessary to save all datasets, models, pictures, etc;
 6. Many thanks to Valerio Velardo. Most of the charts were based on his playlist available in:
 	https://www.youtube.com/@ValerioVelardoTheSoundofAI
-7. The content of the folders below were intentionally ignored in this repository, except for the folders */_analysys* and */_pictures*.
+7. Some folders below were intentionally ignored in this repository, except for the folders */_analysys* and */_pictures*.
 
 ![screenshot](_pictures/README_picture_1.png)
 ![[README_picture_1.png]]
@@ -42,12 +42,16 @@ Pre-process the audio with augmentations and windowing techniques. Outputs the s
 
 * *03_New_dataset_US8K_AV.ipynb:* 
 
-Creates the new dataset **US8K_AV** based on the source US8K.
+Creates the new dataset **US8K_AV** based on the primary data from US8K.
 Creates the class SILENCE from audio files downloaded from the [Freesound.org](https://freesound.org/) project and merge it in the new dataset US8K_AV.
 
-This jupyter notebook is the base to create the official dataset uploaded at Harvard Dataverse.
+This Jupyter notebook was the base to create the official dataset US8K_AV (Urbansound8K for Autonomous Vehicles) uploaded at Harvard Dataverse.
 
-Add the link to Harvard Dataverse here.
+[*US8K_AV: Dataset for Environmental Sound Recognition in Embedded Systems for Autonomous Vehicles*](https://doi.org/10.7910/DVN/4D8WPK)
+
+If you consider this dataset in your research, please cite:
+
+Florentino, André Luiz, 2024, "US8K_AV: Dataset for Environmental Sound Recognition in Embedded Systems for Autonomous Vehicles", [https://doi.org/10.7910/DVN/4D8WPK](https://doi.org/10.7910/DVN/4D8WPK), Harvard Dataverse, V1
 ***
 
 * *04_ML_modeling.ipynb:* 
