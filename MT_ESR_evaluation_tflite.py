@@ -296,23 +296,22 @@ class ESR_evaluation_tflite:
 
     # Function to predict
     def _val_predict_tflite(self):
-        print(f'Sample...: {self.count}')
+        print(f'Audio clip...........: {self.count}')
         self.count = self.count + 1
 
         if self.classifier == 'SVC':
             predict_val = self.model_SVC.predict(np.array(self.features_vector).reshape(1, -1))
             self.predictions.append(predict_val[0])
-            print(predict_val[0])
-
+            print(f'Prediction...........: {predict_val[0]}')
         if self.classifier == 'LR':
             predict_val = self.model_LR.predict(np.array(self.features_vector).reshape(1, -1))
             self.predictions.append(predict_val[0])
-            print(predict_val[0])
+            print(f'Prediction...........: {predict_val[0]}')
 
         elif self.classifier == 'RF':
             predict_val = self.model_RF.predict(np.array(self.features_vector).reshape(1, -1))
             self.predictions.append(predict_val[0])
-            print(predict_val[0])
+            print(f'Prediction...........: {predict_val[0]}')
 
         elif self.classifier == 'ANN':
             self.features_vector = self.features_vector.astype(self.input_details_ANN[0]['dtype'])
@@ -322,7 +321,7 @@ class ESR_evaluation_tflite:
             self.interpreter_ANN.invoke()
             predict_val = np.argmax(self.interpreter_ANN.get_tensor(self.output_details_ANN[0]['index']), axis=1)
             self.predictions.append(predict_val[0])
-            print(self.nom_classes[predict_val[0]])
+            print(f'Prediction...........: {self.nom_classes[predict_val[0]]}')
 
         elif self.classifier == 'CNN1D':
             self.features_vector = self.features_vector.astype(self.input_details_CNN1D[0]['dtype'])
@@ -332,7 +331,7 @@ class ESR_evaluation_tflite:
             self.interpreter_CNN1D.invoke()
             predict_val = np.argmax(self.interpreter_CNN1D.get_tensor(self.output_details_CNN1D[0]['index']), axis=1)
             self.predictions.append(predict_val[0])
-            print(self.nom_classes[predict_val[0]])
+            print(f'Prediction...........: {self.nom_classes[predict_val[0]]}')
 
         elif self.classifier == 'CNN2D':
             self.features_agg = self.features_agg.astype(self.input_details_CNN2D[0]['dtype'])
@@ -342,5 +341,5 @@ class ESR_evaluation_tflite:
             self.interpreter_CNN2D.invoke()
             predict_val = np.argmax(self.interpreter_CNN2D.get_tensor(self.output_details_CNN2D[0]['index']), axis=1)
             self.predictions.append(predict_val[0])
-            print(self.nom_classes[predict_val[0]])
+            print(f'Prediction...........: {self.nom_classes[predict_val[0]]}')
 

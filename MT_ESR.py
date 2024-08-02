@@ -23,6 +23,7 @@ import librosa
 import wave
 import csv
 import re
+import datetime
 
 import numpy   as np
 import tkinter as tk
@@ -61,6 +62,15 @@ with open(os.path.join(path_arrays, 'nom_classes.csv'), 'r') as file:
     for line in file:
         nom_classes.append(line.strip())
 
+# Path were the trained models
+path_modelsVal = os.path.join(current_path, "_ESR", "Saved_models_fold_1_validation")
+
+# Path were the live predictions are saved
+path_live_pred = os.path.join(current_path, "_ESR", "Live_predictions")
+
+# Check if the folder exists, if not, create it
+if not os.path.exists(path_live_pred):
+    os.makedirs(path_live_pred)
 
 # Find audio device index
 devices = []
@@ -76,9 +86,7 @@ print()
 print("=============================================================================================\n")
 
 
-# Path were the trained models and arrays are stored
-path_modelsVal = os.path.join(current_path, "_ESR", "Saved_models_fold_1_validation")
-path_arrays    = os.path.join(current_path, "_ESR", "Arrays")
+
 
 # Load the ESR algorythm
 from MT_ESR_evaluation_tflite import ESR_evaluation_tflite
@@ -93,9 +101,9 @@ if not os.path.exists(cache_audio):
 "==================================== HELPER FUNCTIONS ======================================="
 
 # Function to check the counter of the files _live_audio_predictions.csv and _live_audio_totalPredTime.csv
-def get_next_counter(path, prefix):
+def get_next_counter(path, prefix, extension):
     files = os.listdir(path)
-    pattern = re.compile(rf"{prefix}_(\d+)\.csv")
+    pattern = re.compile(rf"{prefix}_(\d+)\.{extension}")
     counters = [int(pattern.search(f).group(1)) for f in files if pattern.search(f)]
     return max(counters) + 1 if counters else 0
 
@@ -157,42 +165,45 @@ def stop_recording():
     print("Total Prediction Time Array:", totalPredTime_array)
 
     # Determine the next file counter
-    pred_counter = get_next_counter(path_arrays, '_live_audio_predictions')
-    time_counter = get_next_counter(path_arrays, '_live_audio_totalPredTime')
+    pred_counter = get_next_counter(path_live_pred, '_live_audio_predictions', 'csv')
+    time_counter = get_next_counter(path_live_pred, '_live_audio_totalPredTime', 'csv')
 
     # Ensure both counters are in sync
     counter = max(pred_counter, time_counter)
 
     # Write the result to a file (array format)
-    np.array(predictions_array).tofile(os.path.join(path_arrays, f'_live_audio_predictions_{counter}.csv'), sep=',')
-    np.array(totalPredTime_array).tofile(os.path.join(path_arrays, f'_live_audio_totalPredTime_{counter}.csv'), sep=',')
+    np.array(predictions_array).tofile(os.path.join(path_live_pred, f'_live_audio_predictions_{counter}.csv'), sep=',')
+    np.array(totalPredTime_array).tofile(os.path.join(path_live_pred, f'_live_audio_totalPredTime_{counter}.csv'), sep=',')
 
     # Write the result to a file (line by line format)
-    # np.savetxt(os.path.join(path_arrays, '_live_audio_predictions.csv'), np.array(predictions_array), delimiter=';', fmt='%s')
-    # np.savetxt(os.path.join(path_arrays, '_live_audio_totalPredTime.csv'), np.array(totalPredTime_array), delimiter=';')
+    # np.savetxt(os.path.join(path_live_pred, '_live_audio_predictions.csv'), np.array(predictions_array), delimiter=';', fmt='%s')
+    # np.savetxt(os.path.join(path_live_pred, '_live_audio_totalPredTime.csv'), np.array(totalPredTime_array), delimiter=';')
 
 
 # Start the ESR (live prediction)
 def ESR():
     global predictions_array, totalPredTime_array
     try:
+        count_samples = 0
         while not messages.empty():
 
             classifier = 'CNN2D'
             frames     = recordings.get()
 
             # Save the audio file as .WAV for loading into Librosa
-            wf = wave.open(os.path.join(cache_audio, "output.wav"), "wb")
+            count_samples += 1
+            print("================================================")
+            print(f'\nAudio sample.........: {count_samples}')
+            wav_file = str(datetime.datetime.now().strftime("%d%m%y_%H%M%S")) + '_output_' + str(count_samples) + '.wav'
+            wf = wave.open(os.path.join(cache_audio, wav_file), 'wb')
             wf.setnchannels(CHANNELS)
             wf.setsampwidth(p.get_sample_size(FORMAT))
             wf.setframerate(RATE)
             wf.writeframes(b''.join(frames))
             wf.close()
 
-            rawdata, _ = librosa.load(os.path.join(cache_audio, 'output.wav'), sr=RATE_ESR, mono=True)
-
-            print("================================================")
-            print(f'Sound duration..: {librosa.get_duration(y=rawdata):2f}\n')
+            rawdata, _ = librosa.load(os.path.join(cache_audio, wav_file), sr=RATE_ESR, mono=True)
+            print(f'Sound duration.......: {librosa.get_duration(y=rawdata):2f}\n')
             ESR_EVAL      = ESR_evaluation_tflite([rawdata], classifier, path_modelsVal, path_arrays)
 
             # Return the predictions and total time for the predictions
