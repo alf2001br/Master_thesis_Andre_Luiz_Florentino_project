@@ -149,6 +149,16 @@ This notebook performs the live prediction, capturing the sound from the microph
 For the evaluation flow in the Raspberry Pi, an .PY script was created to optimize the performance.
 ***
 
+ * *16_Experiments_indoor.ipynb*
+
+Finally, in this notebook we documented the experiments with live prediction indoor:
+* The experiments were performed using the predictive algorithm embedded in the Raspberry Pi.
+* Simultaneously, the ground truth audio and labels were recorded in the notebook using the same type of microphone.
+* The sound source were videos from YouTube, played from a iPhone 11 at maximum SPL, 5 m away from the microphone.
+* The ground truth audio for each class was evaluated and labeled in the software Audacity.
+
+***
+
  ### List of scripts .PY 
 
 In order of utilization in the Jupyter notebooks:
@@ -233,3 +243,19 @@ Comparison in Excel for the CNN 2D (Larger pictures available in the notebook *0
 
 ![[README_picture_9.jpg]]
 
+***
+#### Confusion matrices of the live predictions indoor
+
+![screenshot](_pictures/README_picture_10.jpg)
+![[README_picture_10.png]]
+
+
+![screenshot](_pictures/README_picture_11.jpg)
+![[README_picture_11.png]]
+
+
+![screenshot](_pictures/README_picture_12.jpg)
+![[README_picture_12.png]]
+
+![screenshot](_pictures/README_picture_13.jpg)
+![[README_picture_13.png]]
