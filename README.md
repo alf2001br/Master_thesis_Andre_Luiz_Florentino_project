@@ -246,6 +246,7 @@ Comparison in Excel for the CNN 2D (Larger pictures available in the notebook *0
 ***
 #### Confusion matrices of the live predictions indoor
 
+![screenshot](_pictures/README_picture_9.jpg)
 ![screenshot](_pictures/README_picture_10.jpg)
 ![[README_picture_10.png]]
 
