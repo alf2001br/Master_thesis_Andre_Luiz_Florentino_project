@@ -39,7 +39,7 @@ current_path   = os.getcwd()
 os_name = os.name
 
 if os_name == 'posix':
-    CHUNK = 4096*2 # Higher chunk to avoid overflow in the Raspberry Pi
+    CHUNK = 4096*1 # Higher chunk to avoid overflow in the Raspberry Pi
 else:
     CHUNK = 1024
 
