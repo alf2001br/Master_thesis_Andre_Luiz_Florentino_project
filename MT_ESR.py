@@ -39,7 +39,7 @@ current_path   = os.getcwd()
 os_name = os.name
 
 if os_name == 'posix':
-    CHUNK = 4096*1 # Higher chunk to avoid overflow in the Raspberry Pi
+    CHUNK = 1024*8 # Higher chunk to avoid overflow in the Raspberry Pi
 else:
     CHUNK = 1024
 
@@ -123,7 +123,7 @@ def record_microphone(chunk=CHUNK):
         global frames
 
         while not messages.empty():
-            data = stream.read(chunk)
+            data = stream.read(chunk)  # exception_on_overflow=False allow decreasing the chunk size
             frames.append(data)
             if len(frames) >= (RATE * RECORD_SECONDS) / chunk:
                 recordings.put(frames.copy())
