@@ -1,5 +1,4 @@
 """
-Faculdade de Engenharia Industrial - FEI
 
 Centro Universitário da Fundação Educacional Inaciana "Padre Sabóia de Medeiros" (FEI)
 

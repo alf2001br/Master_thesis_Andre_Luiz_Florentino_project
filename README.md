@@ -1,7 +1,5 @@
 # Master_thesis_Andre_Luiz_Florentino_project
 
-### Faculdade de Engenharia Industrial - FEI
-
 ### Centro Universitário da Fundação Educacional Inaciana "Padre Sabóia de Medeiros" (FEI)
 
 
@@ -259,3 +257,4 @@ Comparison in Excel for the CNN 2D (Larger pictures available in the notebook *0
 
 ![screenshot](_pictures/README_picture_13.png)
 ![[README_picture_13.png]]
+
