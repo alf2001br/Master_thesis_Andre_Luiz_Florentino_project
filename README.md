@@ -7,7 +7,11 @@
 
 Concentration area: ARTIFICIAL INTELLIGENCE APPLIED TO AUTOMATION AND ROBOTICS
 
-Master's thesis student Andre Luiz Florentino
+Master's thesis student: Andre Luiz Florentino
+
+Title: Environmental sound recognition in embedded systems: bridging experiments in passenger vehicles to autonomous vehicle applications in smart cities
+
+URL at FEI: https://repositorio.fei.edu.br/handle/FEI/5656
 ***
 Citations:
 
@@ -43,12 +47,12 @@ Citations:
 
 **IEEE**:
 
-[1] A. L. Florentino, “Environmental sound recognition in embedded systems: bridging experiments in passenger vehicles to autonomous vehicle applications in smart cities, Master’s thesis, Centro Universitário FEI, 2025. Available: https://doi.org/10.31414/EE.2024.D.131948
+[1] A. L. Florentino, “Environmental sound recognition in embedded systems: bridging experiments in passenger vehicles to autonomous vehicle applications in smart cities, Master’s thesis, Centro Universitário FEI, 2025. Available from: https://doi.org/10.31414/EE.2024.D.131948
 
 
 **ABNT**:
 
-FLORENTINO, André Luiz. Environmental sound recognition in embedded systems: bridging experiments in passenger vehicles to autonomous vehicle applications in smart cities. 2024. 155 f. Dissertação (Mestrado em Engenharia Elétrica) - Centro Universitário FEI, São Bernardo do Campo, 2024. Disponível em: https://repositorio.fei.edu.br/handle/FEI/5656
+FLORENTINO, André Luiz. Environmental sound recognition in embedded systems: bridging experiments in passenger vehicles to autonomous vehicle applications in smart cities. 2024. 155 f. Dissertação (Mestrado em Engenharia Elétrica) - Centro Universitário FEI, São Bernardo do Campo, 2024. Disponível em: https://doi.org/10.31414/EE.2024.D.131948
 
 ***
 
